@@ -1,0 +1,1 @@
+Vlege is a Very Low-Effort Gallery Engine, powering image galleries based upon a native filesystem structure. Complicated server-side scripting languages and databases are eschewed in favor of basic HTML and JavaScript generated using Python scripts and a few helpful libraries.
