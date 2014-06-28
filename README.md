@@ -36,7 +36,7 @@ Authors
 -------
 
 Primary Author & Maintainer:
-  * [Eugene E. Kashpureff Jr]
+  * [Eugene E. Kashpureff Jr](mailto:eugene@kashpureff.org)
 
 
 License
@@ -44,7 +44,7 @@ License
 
 Vlege is offered as free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. If you wish to obtain Vlege under another license(including a proprietary commercial license) for inclusion into other software or use in a situation where the GNU GPL is not acceptable, you may contact the Maintainer for further information.
 
-When obtained under the GNU General Public License, Vlege is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Vlege. If not, you may obtain it at (http://www.gnu.org/licenses/).
+When obtained under the GNU General Public License, Vlege is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Vlege. If not, you may obtain it from the [GNU Project](http://www.gnu.org/licenses/).
 
 Usage of the **Vlege** mark is restricted to the primary Vlege [software](https://github.com/EugeneKay/vlege) distributed by Eugene E. Kashpureff Jr, and references to and usage of the same. Further permission is given to use this mark in a manner consistent with the purpose and image of the brand, eg, "Powered by Vlege".
 
