@@ -22,7 +22,7 @@ Gallery Structure
          *  index.json
          *  Image0001.jpg
          *  Image0001-thumb.jpg
-	 *  Image0001-medium.jpg
+         *  Image0001-medium.jpg
          *  Image0001.json
  *  resources/
      *  vlege.js
