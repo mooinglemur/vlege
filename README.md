@@ -32,7 +32,7 @@ First make sure you have Python3 and the necessary libraries installed, using yo
 ```
 $ mkdir ~/bin
 $ PATH=$PATH:~/bin
-$ [curl https://raw.githubusercontent.com/EugeneKay/vlege/dev/vlege/vlege.py](https://raw.githubusercontent.com/EugeneKay/vlege/dev/vlege/vlege.py) > ~/bin/vlege
+$ curl https://raw.githubusercontent.com/EugeneKay/vlege/dev/vlege/vlege.py > ~/bin/vlege
 $ chmod +x ~/bin/vlege
 $
 ```
