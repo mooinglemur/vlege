@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 
+
 ## Dependencies
-# File-handling
-import os
+# Basics
+import os, sys
 # Image-handling
 from PIL import Image
 # Argument-handling
 import argparse
 # Logging
 import logging
+
 
 ## Define constants
 # Initialize empty array
@@ -18,12 +20,16 @@ size["thumb"]=(200,200)
 # Size of intermediates
 size["medium"]=(1000,1000)
 
+
 ## Argument parsing
 # Initialize
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser("vlege")
+
 # Enumerate args
-parser.add_argument("-v", "--verbose", help="Increase output verbosity",
-                    action="store_true")
+parser.add_argument("-v", "--verbose", action="store_true",
+                    help="Increase output verbosity")
+parser.add_argument("album", help="Path to an album to be processed")
+
 # Annnd... parse!
 args = parser.parse_args()
 
@@ -36,11 +42,18 @@ else:
     # Standard logging
     logging.basicConfig(format="%(levelname)s: %(message)s")
 
+## Validate album path
+if os.path.isdir(args.album):
+    album=args.album
+else:
+    logging.error("Invalid album path specified. Must be a directory.")
+    sys.exit(1)
+
 ## Main Loop
 # Walk filesystem hierarchy
-for root, dirs, files in os.walk("."):
+for root, dirs, files in os.walk(album):
     # Current directory
-    logging.info("Directory: "+root)
+    logging.info("Directory: %s" % root)
     # Walk through files
     for filename in files:
         # Full path to file
