@@ -5,6 +5,7 @@
 import os
 # Image-handling
 from PIL import Image
+# Argument-handling
 
 ## Variable setup
 # Initialize empty array
@@ -21,41 +22,46 @@ for root, dirs, files in os.walk("."):
     print("Directory: ", root)
     # Walk through files
     for filename in files:
-        # Prepare for failure
+        # Full path to file
+        filepath=root+"/"
+        # Pull apart filename
+        filesplit=os.path.splitext(filename)
+        # Basic name of file
+        filebase=filepath+filesplit[0]
+        # Echo
+        print("File: "+filepath+filename)
+        # Skip non-images
+        if filesplit[1].lower() != ".jpg":
+            print("Not a jpg!")
+            continue
+        # Skip already-processed
+        if os.path.isfile(filebase+"-thumb.jpg"):
+            print("Thumb found!")
+            continue
+        # Only process originals
+        if "-medium" in filesplit[0] or "-thumb" in filesplit[0]:
+            print("Not an original!")
+            continue
+        # Load file
         try:
-            # Full path to file
-            filepath=root+"/"
-            # Pull apart filename
-            filesplit=os.path.splitext(filename)
-            # Basic name of file
-            filebase=filepath+filesplit[0]
-            # Echo
-            print("File: "+filepath+filename)
-            # Skip non-images
-            if filesplit[1].lower() != ".jpg":
-                print("Not a jpg!")
-                continue
-            # Skip already-processed
-            if os.path.isfile(filebase+"-thumb.jpg"):
-                print("Thumb found!")
-                continue
-            # Only process originals
-            if "-medium" in filesplit[0] or "-thumb" in filesplit[0]:
-                print("Not an original!")
-                continue
-            # Load file
             img = Image.open(filepath+filename)
-            # Create+save a Thumbnail
-            thumb = img.copy()
+        except IOError:
+            print("Could not open file!")
+            continue
+        # Create+save a Thumbnail
+        thumb = img.copy()
+        try:
             thumb.thumbnail(size["thumb"])
             thumb.save(filebase+"-thumb.jpg")
-            # Do we need a Medium?
-            if img.size > size["medium"]:
-                # Create+savea Medium
+        except IOError:
+            print("Could not create thumb!")
+        # Do we need a Medium?
+        if img.size > size["medium"]:
+            # Create+savea Medium
+            try:
                 medium = img.copy()
                 medium.thumbnail(size["medium"])
                 medium.save(filebase+"-medium.jpg")
-        # Failure found!
-        except IOError:
-            print("Could not make thumbnail")
+            except IOError:
+                print("Could not create medium!")
 
