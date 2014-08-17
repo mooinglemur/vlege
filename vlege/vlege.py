@@ -27,13 +27,22 @@ for root, dirs, files in os.walk("."):
             filepath=root+"/"
             # Pull apart filename
             filesplit=os.path.splitext(filename)
-            # Skip non-images
-            if filesplit[1].lower() != ".jpg":
-                continue
             # Basic name of file
             filebase=filepath+filesplit[0]
             # Echo
             print("File: "+filepath+filename)
+            # Skip non-images
+            if filesplit[1].lower() != ".jpg":
+                print("Not a jpg!")
+                continue
+            # Skip already-processed
+            if os.path.isfile(filebase+"-thumb.jpg"):
+                print("Thumb found!")
+                continue
+            # Only process originals
+            if "-medium" in filesplit[0] or "-thumb" in filesplit[0]:
+                print("Not an original!")
+                continue
             # Load file
             img = Image.open(filepath+filename)
             # Create+save a Thumbnail
