@@ -4,6 +4,12 @@
 #
 # Project-wide gitignores
 #
+
+# Test directory
+album/
+
+
+#
 # Sourced from https://github.com/github/gitignore/
 # Redistributsed under GPLv3+, as allowed by LICENSE found there
 # Copyright (c) 2014 Github, Inc.
