@@ -13,8 +13,9 @@ Table of Contents
   1. [About](#about)
   2. [Usage](#usage)
   3. [Copyright](#copyright)
-  4. [Authors](#authors)
-  5. [License](#license)
+  4. [Changelog](#changelog)
+  5. [Authors](#authors)
+  6. [License](#license)
 
 
 About
@@ -54,6 +55,19 @@ Vlege is Copyright&copy; 2014 by Vlege Authors, enumerated in the [Authors](#aut
 The **Vlege** name is Copright&copy; 2014 Eugene E. Kashpureff Jr, and is pending trademark registration in the United States of America. Usage of the name is permitted when referring to the Vlege software or its usage. See the [License](#license) section of this document for the grants associated with this mark.
 
 Any included libraries are copyright by their respective authors, as noted in their source files.
+
+
+Changelog
+---------
+
+Changelog for this release(**v0.1**):
+
+  * Initial stable-ish release
+  * Basic image-creation functionality
+  * Ostensibly an import-able module
+  * Includes a README!
+
+See the [CHANGELOG](CHANGELOG.md) for historical entries, or the git source repository for per-commit change information.
 
 
 Authors
