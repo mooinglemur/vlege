@@ -11,15 +11,39 @@ Table of Contents
 -----------------
 
   1. [About](#about)
-  2. [Copyright](#copyright)
-  3. [Authors](#authors)
-  4. [License](#license)
+  2. [Usage](#usage)
+  3. [Copyright](#copyright)
+  4. [Authors](#authors)
+  5. [License](#license)
 
 
 About
 -----
 
 Vlege is a **Very Low-Effort Gallery Engine**, powering HTML image galleries based upon a native filesystem structure. Complicated server-side scripting languages and databases are eschewed in favor of basic HTML and JavaScript generated using Python scripts and a few helpful libraries.
+
+
+Usage
+-----
+
+First make sure you have Python3 and the necessary libraries installed, using your system's package system or via `pip`. You will need *Pillow* and *Jinja2*. Then Install Vlege by downloading the script and placing it in your `$PATH` somewhere.
+
+```
+$ mkdir ~/bin
+$ PATH=$PATH:~/bin
+$ [curl https://raw.githubusercontent.com/EugeneKay/vlege/dev/vlege/vlege.py](https://raw.githubusercontent.com/EugeneKay/vlege/dev/vlege/vlege.py) > ~/bin/vlege
+$ chmod +x ~/bin/vlege
+$
+```
+
+Now run Vlege by pointing it at your album.
+
+```
+$ vlege /path/to/your/album/
+$
+```
+
+If everything went well, you should get a pile of -thumb and -medium images, along with an index.html listing.
 
 
 Copyright
