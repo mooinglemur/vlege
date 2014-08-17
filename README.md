@@ -1,6 +1,6 @@
 <!--
 # README.md
-# vlege
+# EugeneKay/vlege
 -->
 
 Vlege
@@ -20,7 +20,7 @@ Table of Contents
 About
 -----
 
-Vlege is a **Very Low-Effort Gallery Engine**, powering HTML image galleries based upon a native filesystem structure. Complicated server-side scripting languages and databases are eschewed in favor of basic HTML and JavaScript generated using Python scripts and a few helpful libraries.
+Vlege is a **Very Low-Effort Gallery Engine**, powering HTML image galleries based upon a native filesystem structure. Complicated server-side scripting languages and databases are eschewed in favor of basic HTML and JavaScript generated using a simple Python script and some helpful libraries.
 
 
 Usage

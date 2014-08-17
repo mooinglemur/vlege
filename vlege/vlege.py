@@ -1,4 +1,17 @@
 #!/usr/bin/env python3
+# vlege/vlege.py
+# EugeneKay/vlege
+#
+# Vlege
+#
+# Vlege is a Very Low-Effort Gallery Engine, powering HTML image galleries
+# based upon a native filesystem structure. Complicated server-side scripting
+# languages and databases are eschewed in favor of basic HTML and JavaScript
+# generated using a simple Python script and some helpful libraries.
+#
+# Copyright(c) 2014 Vlege Authors, including Eugene E. Kashpureff Jr.
+# Licensed under GNU GPLv3+. See included README for more information
+#
 
 
 ## Dependencies
