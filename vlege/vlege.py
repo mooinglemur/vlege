@@ -17,12 +17,14 @@
 ## Dependencies
 # Basics
 import os, sys
-# Image-handling
-from PIL import Image
-# Argument-handling
-import argparse
 # Logging
 import logging
+# CLI friendliness
+import argparse
+# Image-handling
+from PIL import Image
+# Output templating
+import jinja2
 
 ## Function definitions
 

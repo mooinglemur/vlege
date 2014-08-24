@@ -1,0 +1,20 @@
+{#
+# album/templates/index.html.jinja
+# EugeneKay/vlege
+-#}
+<html>
+	<head>
+		<title>{{album.title}} {{album.separator}} {{album.path}}</title>
+	</head>
+	<body>
+		<h1></h1>
+		<div class="album">
+{%  for folder in folders %}
+			<div class="item folder">{{folder.name}}</div>
+{%  endfor %}
+{%  for image in images %}
+			<div class="item image">{{image.name}}</div>
+{%  endfor %}
+	
+	</body>
+</html>
