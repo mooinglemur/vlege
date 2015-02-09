@@ -49,7 +49,7 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
 
     ## Processing loop
     # Walk filesystem hierarchy
-    for root, dirs, files in os.walk(path):
+    for root, dirs, files in os.walk(path, topdown=False):
         # Current directory
         logging.info("Directory: %s" % root)
         # Walk through subdirectories
