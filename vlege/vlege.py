@@ -107,14 +107,14 @@ def vlege(path=None, thumb=200, dryrun=False):
             try:
                 img = Image.open(dir_path+filename)
             except IOError:
-                logging.error("Could not open file")
+                logging.error("Could not open file "+dir_path+filename)
                 continue
             # Create+save a Thumbnail
             try:
                 thumb = ImageOps.fit(img,size["thumb"], method=Image.ANTIALIAS)
                 thumb.save(dir_path+file_base+"-thumb.jpg")
             except IOError:
-                logging.error("Could not create thumb")
+                logging.error("Could not create thumb "+dir_path+file_base+"-thumb.jpg")
 
         ## Index file building
         # Album information
