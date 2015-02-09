@@ -27,13 +27,13 @@ Vlege is a **Very Low-Effort Gallery Engine**, powering HTML image galleries bas
 Usage
 -----
 
-First make sure you have Python3 and the necessary libraries installed, using your system's package system or via `pip`. You will need *Pillow* and *Jinja2*. Then Install Vlege by downloading the script and placing it in your `$PATH` somewhere.
+First make sure you have Python3 and the necessary libraries installed, using your system's package system or via `pip`. You will need *Jinja2* and *Pillow*(with JPEG support). Install Vlege by downloading the script and placing it in your `$PATH` somewhere.
 
 ```
 $ mkdir ~/bin
 $ PATH=$PATH:~/bin
-$ curl https://raw.githubusercontent.com/EugeneKay/vlege/dev/vlege/vlege.py > ~/bin/vlege
-$ chmod +x ~/bin/vlege
+$ git clone https://madeitwor.se/vlege.git
+$ ln -s vlege/vlege/vlege.py ~/bin/vlege
 $
 ```
 
@@ -44,7 +44,7 @@ $ vlege /path/to/your/album/
 $
 ```
 
-If everything went well, you should get a pile of -thumb and -medium images, along with an index.html listing.
+If everything went well, you should get a pile of -thumb images, and an index.html listing. If everything didn't go well, you'll get an error message and possibly a stacktrace.
 
 
 Copyright
