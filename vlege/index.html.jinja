@@ -1,0 +1,22 @@
+{# vim: ft=htmljinja
+# album/templates/index.html.jinja
+# EugeneKay/vlege
+-#}
+<!DOCTYPE html>
+	<head>
+		<title>{{album.title}}</title>
+		<link rel="stylesheet" type="text/css" href="/assets/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="/assets/album.css"/>
+	</head>
+	<body>
+		<h1></h1>
+		<div class="album">
+{%-  for folder in folders %}
+			<span class="item folder"><a href="{{folder.name}}"><img src="/assets/Folder.png"><br />{{folder.name}}</a></span>
+{%-  endfor -%}
+{%-  for image in images %}
+			<span class="item image"><a href="{{image.file}}"><img src="{{image.thumb}}"/></a></span>
+{%-  endfor %}
+		</div>
+	</body>
+</html>

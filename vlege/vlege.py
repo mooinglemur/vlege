@@ -50,7 +50,7 @@ def vlege(path=None, thumb=200, dryrun=False):
     ## Initialize Jinja
     # Initialize Jinja
     JINJA = jinja2.Environment(
-        loader=jinja2.FileSystemLoader("templates/"))
+        loader=jinja2.FileSystemLoader(os.path.dirname(os.path.realpath(__file__))))
     index_template = JINJA.get_template('index.html.jinja')
 
 
