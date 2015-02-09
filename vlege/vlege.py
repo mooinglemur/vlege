@@ -22,19 +22,18 @@ import logging
 # CLI friendliness
 import argparse
 # Image-handling
-from PIL import Image
+from PIL import Image, ImageOps
 # Output templating
 import jinja2
 
 ## Function definitions
 
-def vlege(path=None, thumb=200, medium=1000, dryrun=False):
+def vlege(path=None, thumb=200, dryrun=False):
     """Vlege-ize a path
 
     Keyword arguments:
     path -- path to be Vlege-ized
     thumb -- max pixel dimension of thumbnails
-    medium -- max pixel dimension of mediums
     """
 
     ## Sanitize variables
@@ -44,10 +43,9 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
     # Normalize path name
     path=os.path.normpath(path)
 
-    # Size of thumb & mediums
+    # Size of thumb
     size={}
     size["thumb"]=(thumb,thumb)
-    size["medium"]=(medium,medium)
 
     ## Initialize Jinja
     # Initialize Jinja
@@ -91,12 +89,11 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
                 logging.info("Skipped, not a jpg")
                 continue
             # Only process originals
-            if "-medium" in file_base or "-thumb" in file_base:
-                logging.info("Skipped, is a thumb/med")
+            if "-thumb" in file_base:
+                logging.info("Skipped, is a thumb")
                 continue
             # Add to list
             images.append({'file': filename,
-                'medium': file_base+'-medium.jpg',
                 'thumb': file_base+'-thumb.jpg'
             })
             # Skip already-processed
@@ -113,21 +110,11 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
                 logging.error("Could not open file")
                 continue
             # Create+save a Thumbnail
-            thumb = img.copy()
             try:
-                thumb.thumbnail(size["thumb"])
+                thumb = ImageOps.fit(img,size["thumb"], method=Image.ANTIALIAS)
                 thumb.save(dir_path+file_base+"-thumb.jpg")
             except IOError:
                 logging.error("Could not create thumb")
-            # Do we need a Medium?
-            if img.size > size["medium"]:
-                # Create+save a Medium
-                try:
-                    medium = img.copy()
-                    medium.thumbnail(size["medium"])
-                    medium.save(dir_path+file_base+"-medium.jpg")
-                except IOError:
-                    logging.error("Could not create medium")
 
         ## Index file building
         # Album information
