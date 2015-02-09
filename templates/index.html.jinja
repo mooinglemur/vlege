@@ -1,4 +1,4 @@
-{#
+{# vim: ft=htmljinja
 # album/templates/index.html.jinja
 # EugeneKay/vlege
 -#}
@@ -9,12 +9,11 @@
 	<body>
 		<h1></h1>
 		<div class="album">
-{%  for folder in folders %}
+{%  for folder in folders -%}
 			<div class="item folder">{{folder.name}}</div>
-{%  endfor %}
-{%  for image in images %}
-			<div class="item image">{{image.name}}</div>
-{%  endfor %}
-	
+{%  endfor -%}
+{%  for image in images -%}
+			<div class="item image"><a href="{{image.file}}"><img src="{{image.thumb}}"></a></div>
+{%  endfor -%}
 	</body>
 </html>

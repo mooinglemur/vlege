@@ -41,50 +41,71 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
     # Existance of path
     if not os.path.isdir(path):
         raise MyError("Invalid album path specified. Must be a directory.")
+    # Normalize path name
+    path=os.path.normpath(path)
 
     # Size of thumb & mediums
     size={}
     size["thumb"]=(thumb,thumb)
     size["medium"]=(medium,medium)
 
+    ## Initialize Jinja
+    # Initialize Jinja
+    JINJA = jinja2.Environment(
+        loader=jinja2.FileSystemLoader("templates/"))
+    index_template = JINJA.get_template('index.html.jinja')
+
+
     ## Directory processing loop
     # Walk filesystem hierarchy
     for root, dirs, files in os.walk(path, topdown=False):
-        # Currently-processed directory
+        # Currently-processing directory
         logging.info("Directory: %s" % root)
+        dirpath=root+"/"
+
+        # Reset for this directory
+        folders = []
+        images = []
 
         ## Subdirectory processing loop
+        dirs.sort()
         for subdir in dirs:
             logging.info("Subdir: %s" % subdir)
+            # Add to list
+            folders.append(subdir)
 
         ## Image processing loop
+        files.sort()
         for filename in files:
-            # Full path to file
-            filepath=root+"/"
             # Pull apart filename
             filesplit=os.path.splitext(filename)
             # Basic name of file
-            filebase=filepath+filesplit[0]
-            # Echo
-            logging.info("File: "+filepath+filename)
+            filebase=dirpath+filesplit[0]
+            # Information
+            logging.info("File: "+dirpath+filename)
             # Skip non-images
             if filesplit[1].lower() != ".jpg":
                 logging.info("Skipped, not a jpg")
                 continue
-            # Skip already-processed
-            if os.path.isfile(filebase+"-thumb.jpg"):
-                logging.info("Skipped, thumb found")
-                continue
             # Only process originals
             if "-medium" in filesplit[0] or "-thumb" in filesplit[0]:
                 logging.info("Skipped, is a thumb/med")
+                continue
+            # Add to list
+            images.append({'file': filename,
+                'medium': filesplit[0]+'-medium.jpg',
+                'thumb': filesplit[0]+'-thumb.jpg'
+            })
+            # Skip already-processed
+            if os.path.isfile(filebase+"-thumb.jpg"):
+                logging.info("Skipped, thumb found")
                 continue
             # Don't process on dry runs
             if dryrun is True:
                 continue
             # Load file
             try:
-                img = Image.open(filepath+filename)
+                img = Image.open(dirpath+filename)
             except IOError:
                 logging.error("Could not open file")
                 continue
@@ -104,6 +125,30 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
                     medium.save(filebase+"-medium.jpg")
                 except IOError:
                     logging.error("Could not create medium")
+
+        ## Index file building
+        # Album information
+        logging.info("Building index for "+root)
+        index_values = {
+            'album': { 'title': root,
+                'separator': '-',
+                'path': root
+            },
+            'folders': folders,
+            'images': images
+        }
+        # Generate index
+        index_rendered = index_template.render(index_values)
+        # Skip on dry runs
+        if dryrun is True:
+            continue
+        # Open+truncate index file
+        index_file = open(root+'/index.html', 'w')
+        # Write out contents
+        index_file.write(index_rendered)
+        # Done with file
+        index_file.close()
+
 
 def main():
     ## Argument parsing
