@@ -60,12 +60,13 @@ Any included libraries are copyright by their respective authors, as noted in th
 Changelog
 ---------
 
-Changelog for this release(**v0.1**):
+Changelog for this release(**v0.2**):
 
-  * Initial stable-ish release
-  * Basic image-creation functionality
-  * Ostensibly an import-able module
-  * Includes a README!
+  * First recommended release
+  * Index files are generated
+  * Uses square thumbnails
+  * Learned --dryrun
+  * Internal refactoring
 
 See the [CHANGELOG](CHANGELOG.md) for historical entries, or the git source repository for per-commit change information.
 
