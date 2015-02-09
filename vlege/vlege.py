@@ -61,7 +61,8 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
     for root, dirs, files in os.walk(path, topdown=False):
         # Currently-processing directory
         logging.info("Directory: %s" % root)
-        dirpath=root+"/"
+        dir_path=root+"/"
+        dir_name=os.path.basename(root)
 
         # Reset for this directory
         folders = []
@@ -72,32 +73,34 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
         for subdir in dirs:
             logging.info("Subdir: %s" % subdir)
             # Add to list
-            folders.append(subdir)
+            folders.append({'name': subdir})
 
         ## Image processing loop
         files.sort()
         for filename in files:
             # Pull apart filename
-            filesplit=os.path.splitext(filename)
+            file_split=os.path.splitext(filename)
             # Basic name of file
-            filebase=dirpath+filesplit[0]
+            file_base=file_split[0]
+            # Extension of file
+            file_ext=file_split[1].lower()
             # Information
-            logging.info("File: "+dirpath+filename)
+            logging.info("File: "+filename)
             # Skip non-images
-            if filesplit[1].lower() != ".jpg":
+            if file_ext != ".jpg":
                 logging.info("Skipped, not a jpg")
                 continue
             # Only process originals
-            if "-medium" in filesplit[0] or "-thumb" in filesplit[0]:
+            if "-medium" in file_base or "-thumb" in file_base:
                 logging.info("Skipped, is a thumb/med")
                 continue
             # Add to list
             images.append({'file': filename,
-                'medium': filesplit[0]+'-medium.jpg',
-                'thumb': filesplit[0]+'-thumb.jpg'
+                'medium': file_base+'-medium.jpg',
+                'thumb': file_base+'-thumb.jpg'
             })
             # Skip already-processed
-            if os.path.isfile(filebase+"-thumb.jpg"):
+            if os.path.isfile(dir_path+file_base+"-thumb.jpg"):
                 logging.info("Skipped, thumb found")
                 continue
             # Don't process on dry runs
@@ -105,7 +108,7 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
                 continue
             # Load file
             try:
-                img = Image.open(dirpath+filename)
+                img = Image.open(dir_path+filename)
             except IOError:
                 logging.error("Could not open file")
                 continue
@@ -113,7 +116,7 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
             thumb = img.copy()
             try:
                 thumb.thumbnail(size["thumb"])
-                thumb.save(filebase+"-thumb.jpg")
+                thumb.save(dir_path+file_base+"-thumb.jpg")
             except IOError:
                 logging.error("Could not create thumb")
             # Do we need a Medium?
@@ -122,7 +125,7 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
                 try:
                     medium = img.copy()
                     medium.thumbnail(size["medium"])
-                    medium.save(filebase+"-medium.jpg")
+                    medium.save(dir_path+file_base+"-medium.jpg")
                 except IOError:
                     logging.error("Could not create medium")
 
@@ -130,7 +133,7 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
         # Album information
         logging.info("Building index for "+root)
         index_values = {
-            'album': { 'title': root,
+            'album': { 'title': dir_name,
                 'separator': '-',
                 'path': root
             },
