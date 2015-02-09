@@ -28,7 +28,7 @@ import jinja2
 
 ## Function definitions
 
-def vlege(path=None, thumb=200, medium=1000):
+def vlege(path=None, thumb=200, medium=1000, dryrun=False):
     """Vlege-ize a path
 
     Keyword arguments:
@@ -78,6 +78,9 @@ def vlege(path=None, thumb=200, medium=1000):
             if "-medium" in filesplit[0] or "-thumb" in filesplit[0]:
                 logging.info("Skipped, is a thumb/med")
                 continue
+            # Don't process on dry runs
+            if dryrun is True:
+                continue
             # Load file
             try:
                 img = Image.open(filepath+filename)
@@ -107,6 +110,8 @@ def main():
     parser = argparse.ArgumentParser("vlege")
 
     # Enumerate args
+    parser.add_argument("-d", "--dryrun", action="store_true",
+                            help="Perform a dry run(do not modify files)")
     parser.add_argument("-v", "--verbose", action="store_true",
                             help="Increase output verbosity")
     parser.add_argument("album", help="Path to an album to be processed")
@@ -114,16 +119,17 @@ def main():
     # Annnd... parse!
     args = parser.parse_args()
 
-    ## Output & Logging
+    # Set up logging
     if args.verbose:
         # Verbose logging
         logging.basicConfig(format="%(levelname)s: %(message)s", level=logging.DEBUG)
-        logging.info("Verbose output.")
+        logging.info("Verbose output enabled")
     else:
         # Standard logging
         logging.basicConfig(format="%(levelname)s: %(message)s")
 
-    vlege(path=args.album)
+    logging.info("Executing main loop")
+    vlege(path=args.album, dryrun=args.dryrun)
 
 if __name__ == "__main__":
     sys.exit(main())
