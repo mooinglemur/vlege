@@ -10,7 +10,7 @@
 		<h1></h1>
 		<div class="album">
 {%  for folder in folders -%}
-			<div class="item folder">{{folder.name}}</div>
+			<div class="item folder"><a href="{{folder.name}}">{{folder.name}}</a></div>
 {%  endfor -%}
 {%  for image in images -%}
 			<div class="item image"><a href="{{image.file}}"><img src="{{image.thumb}}"></a></div>
