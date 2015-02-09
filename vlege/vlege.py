@@ -47,16 +47,17 @@ def vlege(path=None, thumb=200, medium=1000, dryrun=False):
     size["thumb"]=(thumb,thumb)
     size["medium"]=(medium,medium)
 
-    ## Processing loop
+    ## Directory processing loop
     # Walk filesystem hierarchy
     for root, dirs, files in os.walk(path, topdown=False):
-        # Current directory
+        # Currently-processed directory
         logging.info("Directory: %s" % root)
-        # Walk through subdirectories
+
+        ## Subdirectory processing loop
         for subdir in dirs:
             logging.info("Subdir: %s" % subdir)
 
-        # Walk through files listing
+        ## Image processing loop
         for filename in files:
             # Full path to file
             filepath=root+"/"
