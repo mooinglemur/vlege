@@ -52,7 +52,7 @@ Copyright
 
 Vlege is Copyright&copy; 2014-2015 by Vlege Authors, enumerated in the [Authors](#authors) section of this README document. Detailed authorship can be found by examining the source code repository via the `git blame` command.
 
-The **Vlege** name is Copright&copy; 2014-2015 Eugene E. Kashpureff Jr, and is pending trademark registration in the United States of America. Usage of the name is permitted when referring to the Vlege software or its usage. See the [License](#license) section of this document for the grants associated with this mark.
+The **Vlege** name is Copyright&copy; 2014-2015 Eugene E. Kashpureff Jr, and is pending trademark registration in the United States of America. Usage of the name is permitted when referring to the Vlege software or its usage. See the [License](#license) section of this document for the grants associated with this mark.
 
 Any included libraries are copyright by their respective authors, as noted in their source files.
 
